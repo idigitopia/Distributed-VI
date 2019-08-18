@@ -43,5 +43,5 @@ python run.py -e frozen_lake -exp_id test1 -vi distributed -w 24 -m 10,32,72,100
 ```
 
 
-##Acknowledgements
+## Acknowledgements
 - Mostly inspired by Synchronous Value Iteration Assignment from CS533 [INTELLIGENT AGENTS & DECISION MAKING(CS_533 - Spring 2018)] 

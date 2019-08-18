@@ -9,7 +9,7 @@ ray.init()
 # S : State Space 
 
 @ray.remote
-class VI_worker_class(object):
+class VI_worker(object):
     def __init__(self, list_of_actions, tran_dict, reward_dict, beta, backup_states, true_action_prob=0.8,
                  unknown_value=0):
         self.backup_states = backup_states
@@ -62,13 +62,13 @@ def distributed_value_iteration(S, A, reward_dict, tran_dict, seed_value=None, u
     V_t = {s: 0 for s in S} if seed_value is None else seed_value
 
     # Make VI workers
-    workers_list = [VI_worker_class.remote(list_of_actions=A,
-                                           tran_dict=tran_dict,
-                                           reward_dict=reward_dict,
-                                           beta=beta,
-                                           backup_states=state_chunk,
-                                           unknown_value=unknown_value,
-                                           true_action_prob=true_action_prob)
+    workers_list = [VI_worker.remote(list_of_actions=A,
+                                     tran_dict=tran_dict,
+                                     reward_dict=reward_dict,
+                                     beta=beta,
+                                     backup_states=state_chunk,
+                                     unknown_value=unknown_value,
+                                     true_action_prob=true_action_prob)
                     for state_chunk in state_chunks]
 
     # Do VI computation

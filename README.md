@@ -24,7 +24,7 @@ The repo currently supports two VI-Engines.
 
 The provided Frozen_Lake Environment has been used for testing/Benchmarking purposes. (Note that the state space is equal to the map_size to the power of 2)
 
-Sample run example for solving frozen_lake environment of map_size 100X100 using distributed VI engine with consuming 8 workesrs. (experiment repeated 10 times for avg runtime and experiment folder to be padded with test1)
+Sample run example for solving frozen_lake environment of map_size 100X100 using distributed VI engine with consuming 8 workesrs. (experiment repeated 5 times for avg runtime and experiment folder to be padded with test1)
 ```
 python run.py -e frozen_lake -exp_id test1 -vi distributed -w 8 -m 100 -r 5
 ```

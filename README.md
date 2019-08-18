@@ -42,6 +42,7 @@ python run.py -e frozen_lake -exp_id test1 -vi distributed -w 20 -m 10,32,72,100
 python run.py -e frozen_lake -exp_id test1 -vi distributed -w 24 -m 10,32,72,100,225,320,500,708,868,1000 -r 10
 ```
 
-
+### Benchmark Results [(Frozen_Lake)](https://github.com/idigitopia/Distributed-VI/blob/master/results/frozen_lake_R2/Distributed%20VI%20Number%20of%20StatesvsRuntime%20(Seconds).html)
+![Bechmark Results for Frozen Lake Environment](results/frozen_lake_R2/Screenshot_20190818_094534.png)
 ## Acknowledgements
 - Mostly inspired by Synchronous Value Iteration Assignment from CS533 [INTELLIGENT AGENTS & DECISION MAKING(CS_533 - Spring 2018)] 

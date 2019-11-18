@@ -1,13 +1,13 @@
 import argparse
 import pickle as pk
 import time
-
+from gpu_vi_engine_s import gpu_value_iteration
 import utils as utils
 from env_frozen_lake import FrozenLakeEnvDynamic, save_and_print_results, get_performance_log, get_tran_reward_dict, process_log_data
 from vi_engine_s import distributed_value_iteration, simple_value_iteration
 
 ENV_MAP = {"frozen_lake": FrozenLakeEnvDynamic}
-VI_ENGINE_MAP = {'distributed': distributed_value_iteration, 'simple': simple_value_iteration}
+VI_ENGINE_MAP = {'distributed': distributed_value_iteration, 'simple': simple_value_iteration, 'gpu':gpu_value_iteration}
 
 
 def run_experiment(args):
@@ -73,18 +73,17 @@ if __name__ == "__main__":
                         choices=['frozen_lake'], default='frozen_lake')
     parser.add_argument('-exp_id', "--experiment_id", help="Experiment id for new result folder", default='R1')
     parser.add_argument('-vi', "--vi_engine", help="Choice of VI engine to use",
-                        choices=['distributed', 'simple'], default='distributed')
+                        choices=['distributed', 'simple'], default='gpu')
     parser.add_argument("-w", "--workers", help="Number of Workers", type=int, default=4)
     parser.add_argument("-m", "--map_size", help="map size(s), comma separated", default='100')
     parser.add_argument("--load_env", help="load environment from cache ?", action="store_true", default=True)
     parser.add_argument("--verbose", help="print errors", action="store_true", default=False)
-    parser.add_argument("-r", "--num_of_runs", help="Number of full pipeline runs", type=int, default=10)
+    parser.add_argument("-r", "--num_of_runs", help="Number of full pipeline runs", type=int, default=2)
     args = parser.parse_args()
 
-    map_sizes = [int(i) for i in args.map_size.split(',')]  # [10, 32, 72, 100, 225, 320, 500, 708, 868, 1000]
+    map_sizes = [10, 32, 72, 100, 225, 320, 500, 708, 868, 1000]
 
     for map_size in map_sizes:
         for i in range(args.num_of_runs):
             args.map_size = map_size
             run_experiment(args)
-
